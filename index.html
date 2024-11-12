@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      #map {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        image-rendering: pixelated;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="map" width="2048" height="2048"></canvas>
+
+    <script>
+      const map = document.getElementById("map");
+      let ctx = map.getContext("2d");
+      let canvasSize = { x: 2048, z: 2048 };
+
+      let pos = { x: 0, z: 0 };
+      let size = 3;
+
+      let maps = [];
+
+      let speed = 1;
+      let scroll = 0.9;
+
+      for (let x = -2; x < 2; x++) {
+        for (let z = -2; z < 2; z++) {
+          let img = new Image();
+          img.src = `map/${x},${z}.png`;
+          img.onload = () => {
+            maps.push({ x, z, img });
+          };
+        }
+      }
+
+      let roads = [];
+      fetch("roads.json")
+        .then((response) => response.json())
+        .then((data) => {
+          roads = data;
+        })
+        .catch((error) => console.error("Error loading roads:", error));
+
+      let squares = [];
+      fetch("squares.json")
+        .then((response) => response.json())
+        .then((data) => {
+          squares = data;
+        })
+        .catch((error) => console.error("Error loading squares:", error));
+
+      ctx.imageSmoothingEnabled = false;
+      ctx.webkitImageSmoothingEnabled = false;
+      ctx.mozImageSmoothingEnabled = false;
+      ctx.msImageSmoothingEnabled = false;
+
+      ctx.fillStyle = "#597436";
+      ctx.fillRect(0, 0, canvasSize.x, canvasSize.y);
+
+      setInterval(() => {
+        draw();
+      }, 1000 / 30);
+
+      function draw() {
+        ctx.fillStyle = "#597436";
+        ctx.fillRect(0, 0, canvasSize.x, canvasSize.z);
+        drawMap();
+
+        ctx.font = `bold ${2 * size}px Calibri`;
+        ctx.fillStyle = "blue";
+        ctx.strokeStyle = "black";
+        ctx.strokeText(
+          "●",
+          (canvasSize.x + size) / 2,
+          (canvasSize.z + size) / 2
+        );
+        ctx.fillText("●", (canvasSize.x + size) / 2, (canvasSize.z + size) / 2);
+
+        drawRoad();
+        drawSquares();
+      }
+
+      function drawMap() {
+        maps.forEach((mapPeace) => {
+          ctx.drawImage(
+            mapPeace.img,
+            (mapPeace.x * 512 - pos.x) * size + canvasSize.x / 2,
+            (mapPeace.z * 512 - pos.z) * size + canvasSize.z / 2,
+            512 * size,
+            512 * size
+          );
+        });
+      }
+
+      function drawRoad() {
+        ctx.strokeStyle = "black";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.lineWidth = size;
+        ctx.lineJoin = "round";
+
+        roads.forEach((road) => {
+          if (road.todo) {
+            ctx.fillStyle = "red";
+          } else if (road.type === "river") {
+            ctx.fillStyle = "lightblue";
+          } else {
+            ctx.fillStyle = "white";
+          }
+          ctx.font = `bold ${size * road.size - size}px Calibri`;
+
+          for (let i = 1; i < road.path.length; i++) {
+            let dx = road.path[i].x - road.path[i - 1].x;
+            let dz = road.path[i].z - road.path[i - 1].z;
+            let distance = Math.sqrt(dx ** 2 + dz ** 2);
+
+            let textMetrics = ctx.measureText(road.name);
+
+            textMetrics = ctx.measureText(road.name);
+
+            ctx.save();
+            ctx.translate(
+              ((road.path[i - 1].x + road.path[i].x) / 2 - pos.x) * size +
+                canvasSize.x / 2,
+              ((road.path[i - 1].z + road.path[i].z) / 2 - pos.z) * size +
+                canvasSize.z / 2
+            );
+
+            let ratio = Math.min((distance * size) / textMetrics.width, 1);
+            let theta = Math.atan2(-dz, -dx);
+            if (theta < 0) theta += 2 * Math.PI;
+            theta = ((theta + Math.PI / 2) % Math.PI) - Math.PI / 2;
+            ctx.rotate(theta);
+
+            ctx.scale(ratio, ratio);
+
+            ctx.strokeText(road.name, 0, 0);
+            ctx.fillText(road.name, 0, 0);
+            ctx.restore();
+
+            if (road.path[i].skip) i++;
+          }
+
+          // for (let i = 1; i < road.path.length; i++) {
+          //   if (
+          //     Math.sqrt(
+          //       (road.path[i - 1].x - road.path[i].x) ** 2 +
+          //         (road.path[i - 1].y - road.path[i].y) ** 2
+          //     ) >
+          //     road.name.length * 10 / size
+          //   ) {
+          //     ctx.fillText(
+          //       road.name,
+          //       ((road.path[i - 1].x + road.path[i].x) / 2 - pos.x) * size +
+          //         canvasSize.x / 2,
+          //       ((road.path[i - 1].y + road.path[i].y) / 2 - pos.y) * size +
+          //         canvasSize.y / 2 +
+          //         (10 * size) / 2
+          //     );
+          //   }
+          // }
+          // ctx.beginPath();
+          // ctx.moveTo(
+          //   (road.path[0].x - pos.x) * size+ canvasSize.x / 2,
+          //   (road.path[0].y - pos.y) * size + canvasSize.y / 2
+          // );
+          // road.path.forEach((point) => {
+          //   ctx.lineTo(
+          //     (point.x - pos.x) * size + canvasSize.x / 2,
+          //     (point.y - pos.y) * size + canvasSize.y / 2
+          //   );
+          // });
+          // ctx.stroke();
+        });
+      }
+
+      function drawSquares() {
+        squares.forEach((square) => {
+          ctx.strokeStyle = square.color + "80";
+          ctx.fillStyle = square.color + "30";
+          ctx.lineWidth = size;
+          ctx.beginPath();
+          ctx.moveTo(
+            (square.nodes[0].x - pos.x) * size + canvasSize.x / 2,
+            (square.nodes[0].z - pos.z) * size + canvasSize.z / 2
+          );
+          square.nodes.forEach((node, i) => {
+            if (node.type === "circle") {
+              let x = (node.x - pos.x) * size + canvasSize.x / 2;
+              let z = (node.z - pos.z) * size + canvasSize.z / 2;
+              let radius = node.radius * size;
+              ctx.moveTo(x + radius, z);
+              ctx.arc(x, z, radius, 0, Math.PI * 2);
+            } else if (node.type === "arch") {
+              let prev = square.nodes[i - 1];
+              let next = square.nodes[i + 1];
+              let prevX = (prev.x - pos.x) * size + canvasSize.x / 2;
+              let prevZ = (prev.z - pos.z) * size + canvasSize.z / 2;
+              let nextX = (next.x - pos.x) * size + canvasSize.x / 2;
+              let nextZ = (next.z - pos.z) * size + canvasSize.z / 2;
+              let x = (node.x - pos.x) * size + canvasSize.x / 2;
+              let z = (node.z - pos.z) * size + canvasSize.z / 2;
+              let radius = Math.sqrt((prevX - x) ** 2 + (prevZ - z) ** 2);
+              ctx.arc(
+                x,
+                z,
+                radius,
+                Math.atan2(prevZ - z, prevX - x),
+                Math.atan2(nextZ - z, nextX - x)
+              );
+            } else {
+              ctx.lineTo(
+                (node.x - pos.x) * size + canvasSize.x / 2,
+                (node.z - pos.z) * size + canvasSize.z / 2
+              );
+            }
+          });
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.save();
+          ctx.fillStyle = square.color;
+          ctx.strokeStyle = "black";
+          ctx.font = `bold ${size * square.size}px Calibri`;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+
+          ctx.translate(
+            (square.center.x - pos.x) * size + canvasSize.x / 2,
+            (square.center.z - pos.z) * size + canvasSize.z / 2
+          );
+          ctx.rotate(((square.rotation ?? 0) * Math.PI) / 180);
+          ctx.strokeText(
+            square.name, 0, 0
+          );
+          ctx.fillText(square.name, 0, 0);
+          ctx.restore();
+        });
+      }
+
+      window.addEventListener("keydown", (e) => {
+        // speed = Math.ceil(speed * 1/ size);
+        if (e.key === "w") {
+          pos.z -= speed;
+        }
+        if (e.key === "s") {
+          pos.z += speed;
+        }
+        if (e.key === "a") {
+          pos.x -= speed;
+        }
+        if (e.key === "d") {
+          pos.x += speed;
+        }
+        if (e.key === "q") {
+          size /= scroll;
+        }
+        if (e.key === "e") {
+          size *= scroll;
+        }
+      });
+
+      window.addEventListener("wheel", (e) => {
+        if (e.deltaY > 0) {
+          size *= 0.9;
+        } else {
+          size /= 0.9;
+        }
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        if (e.buttons === 1) {
+          pos.x -= e.movementX / size;
+          pos.z -= e.movementY / size;
+        }
+      });
+      window.addEventListener("mouseup", (e) => {
+        pos.x = Math.round(pos.x);
+        pos.z = Math.round(pos.z);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,387 @@
+[
+  {
+    "name": "A. Kubański Ave",
+    "size": 10,
+    "path": [
+      { "x": 254, "z": -172 },
+      { "x": 129, "z": -172, "skip": true },
+      { "x": 112, "z": -166 },
+      { "x": -99, "z": -166 }
+    ]
+  },
+  {
+    "name": "K. Tyburski St.",
+    "size": 8,
+    "path": [
+      { "x": 141, "z": -181 },
+      { "x": 141, "z": -252 }
+    ]
+  },
+  {
+    "name": "Hong Kong St.",
+    "size": 5,
+    "path": [
+      { "x": 147, "z": -213 },
+      { "x": 179, "z": -213, "skip": true },
+      { "x": 179, "z": -200 },
+      { "x": 207, "z": -200 }
+    ]
+  },
+  {
+    "name": "K. Karwowska Way",
+    "size": 10,
+    "path": [
+      { "x": 264, "z": -252 },
+      { "x": 264, "z": -110 }
+    ]
+  },
+  {
+    "name": "S. Wąsik Ave",
+    "size": 10,
+    "path": [
+      { "x": 262, "z": -95 },
+      { "x": 262, "z": 20, "skip": true },
+      { "x": 262, "z": 91 },
+      { "x": 262, "z": 278 }
+    ]
+  },
+  {
+    "name": "S. Wąsik Ave",
+    "size": 5,
+    "path": [
+      { "x": 259, "z": 29 },
+      { "x": 259, "z": 81 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "S. Fiskiss Ave",
+    "size": 10,
+    "path": [
+      { "x": 272, "z": 101 },
+      { "x": 415, "z": 101, "skip": true },   
+      { "x": 435, "z": 101 },   
+      { "x": 521, "z": 101 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "M. Kowalski St.",
+    "size": 7,
+    "path": [
+      { "x": 425, "z": 90 },
+      { "x": 405, "z": -10 },
+      { "x": 386, "z": -102 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "P. Fudała St. ",
+    "size": 5, 
+    "path": [
+      { "x": 403, "z": -47 },
+      { "x": 500, "z": -74 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "K. Rogoza Ave",
+    "size": 11,
+    "path": [
+      { "x": 141, "z": 51 },
+      { "x": 90, "z": 152, "skip": true },
+      { "x": 80, "z": 173 },
+      { "x": 48, "z": 236 }
+
+    ]
+  },
+  {
+    "todo": true,
+    "name": "M. Piwowar Ave",
+    "size": 9,
+    "path": [
+      { "x": 0, "z": 40 },
+      { "x": 0, "z": 111 },
+      { "x": 31, "z": 235, "skip": true },
+      { "x": 38, "z": 260 },
+      { "x": 68, "z": 384 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "R. Dworak Ave",
+    "size": 10,
+    "path": [
+      { "x": 48, "z": 255 },
+      { "x": 148, "z": 255 },
+      { "x": 248, "z": 255 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "M. Berlińska St.",
+    "size": 5,
+    "path": [
+      { "x": 194, "z": 247 },
+      { "x": 194, "z": 208, "skip": true },
+      { "x": 194, "z": 196 },
+      { "x": 194, "z": 157 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "A. Berlińska St.",
+    "size": 5,
+    "path": [
+      { "x": 227, "z": 247 },
+      { "x": 227, "z": 208, "skip": true },
+      { "x": 227, "z": 196 },
+      { "x": 227, "z": 157 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "A. Doliński St.",
+    "size": 5,
+    "path": [
+      { "x": 161, "z": 247 },
+      { "x": 161, "z": 208, "skip": true },
+      { "x": 161, "z": 196 },
+      { "x": 161, "z": 157 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "B. Skociński St.",
+    "size": 5,
+    "path": [
+      { "x": 128, "z": 247 },
+      { "x": 128, "z": 208, "skip": true },
+      { "x": 128, "z": 196 },
+      { "x": 128, "z": 147 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "N. Drzazgowski St.",
+    "size": 6,
+    "path": [
+      { "x": 253, "z": 202 },
+      { "x": 171, "z": 202 },
+      { "x": 100, "z": 202 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "N. Stawiński St.",
+    "size": 6,
+    "path": [
+      { "x": 95, "z": 247 },
+      { "x": 95, "z": 173 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "W. Barciński St.",
+    "size": 4,
+    "path": [
+      { "x": 164, "z": 155 },
+      { "x": 222, "z": 155 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "Z. Ciulińska Psgw.",
+    "size": 5,
+    "path": [
+      { "x": 88, "z": 217 },
+      { "x": 70, "z": 217 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "Droga bez nazwy #1",
+    "size": 9,
+    "path": [
+    ]
+  },
+  {
+    "todo": true,
+    "name": "P. Józefczyk St.",
+    "size": 9,
+    "path": [
+      { "x": 254, "z": -101 },
+      { "x": 149, "z": -101, "skip": true },
+      { "x": 270, "z": -101 },
+      { "x": 379, "z": -101 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "P. Lutomierski St.",
+    "size": 5,
+    "path": [
+      { "x": 150, "z": -128 },
+      { "x": 254, "z": -128, "skip": true },
+      { "x": 25, "z": -128 },
+      { "x": -25, "z": -128 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "P. Lutomierski St.",
+    "size": 9,
+    "path": [
+      { "x": 132, "z": -128 },
+      { "x": 36, "z": -128 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "M. Stolarczyk Ave",
+    "size": 9,
+    "path": [
+      { "x": -41, "z": 0 },
+      { "x": -115, "z": 0 },
+      { "x": -214, "z": 0 },
+      { "x": -285, "z": 0 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "Shanghai St.",
+    "size": 9,
+    "path": [
+      { "x": 125, "z": 103 },
+      { "x": 253, "z": 103 }
+    ]
+  },
+
+
+  {
+    "todo": true,
+    "name": "C. Kerkyrasa Ave",
+    "size": 9,
+    "path": [
+      { "x": 105, "z": 0 },
+      { "x": 41, "z": 0 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "M. Celmer Ave",
+    "size": 9,
+    "path": [
+      { "x": 142, "z": -139 },
+      { "x": 142, "z": -46 }
+
+    ]
+  },
+  {
+    "todo": true,
+    "name": "H. Podgórski St.",
+    "size": 5,
+    "path": [
+      { "x": 33, "z": -40 },
+      { "x": 33, "z": -82 },
+      { "x": 33, "z": -124 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "H. Podgórski St.",
+    "size": 11,
+    "path": [
+      { "x": 13, "z": -132 },
+      { "x": 13, "z": -154, "skip": true },
+      { "x": 13, "z": -178 },
+      { "x": 13, "z": -256 },
+      { "x": 13, "z": -365 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "P. Krysztofiak St.",
+    "size": 5,
+    "path": [
+      { "x": -31, "z": -40 },
+      { "x": -31, "z": -82 },
+      { "x": -31, "z": -124 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "P. Krysztofiak St.",
+    "size": 11,
+    "path": [
+      { "x": -13, "z": -132 },
+      { "x": -13, "z": -154, "skip": true },
+      { "x": -13, "z": -178 },
+      { "x": -13, "z": -256 },
+      { "x": -13, "z": -365 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "Ł. Kozakiewicza Ave",
+    "size": 9,
+    "path": [
+      { "x": -126, "z": -7 },
+      { "x": -126, "z": -134 },
+      { "x": -120, "z": -236 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "E. Kedzierski St.",
+    "size": 7,
+    "path": [
+      { "x": -66, "z": -155 },
+      { "x": -66, "z": -100 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "I. Czerniak St.",
+    "size": 9,
+    "path": [
+      { "x": 272, "z": -8 },
+      { "x": 387, "z": -8 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "M. Moravcik Ave",
+    "size": 9,
+    "path": [
+      { "x": 347, "z": 105 },
+      { "x": 347, "z": 147, "skip": true },
+      { "x": 353, "z": 156 },
+      { "x": 353, "z": 205, "skip": true },
+      { "x": 347, "z": 214 },
+      { "x": 347, "z": 256 }
+    ]
+  },
+  {
+    "todo": true,
+    "name": "I Grgas St.",
+    "size": 9,
+    "path": [
+      { "x": 279, "z": 262 },
+      { "x": 342, "z": 262, "skip": true },
+      { "x": 353, "z": 262 },
+      { "x": 424, "z": 262, "skip": true },
+      { "x": 449, "z": 262 },
+      { "x": 521, "z": 262 }
+    ]
+  },
+  {
+    "type": "river",
+    "name": "Kanał Temat",
+    "size": 9,
+    "path": [
+      { "x": 404, "z": 382 },
+      { "x": 440, "z": 268, "skip": true }
+    ]
+  }
+]
